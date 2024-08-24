@@ -33,7 +33,7 @@ jobs:
           aws-region: ${{ inputs.region }}
 
       - name: Create EC2 Instance
-        run: aws ec2 run-instances --image-id ami-0c55b159cbfafe1f0 --count 1 --instance-type t2.micro --key-name ec2_keypair --security-group-ids sg-xxxxxxxx --subnet-id subnet-xxxxxxxx
+        run: aws ec2 run-instances --image-id ami-066784287e358dad1 --count 1 --instance-type t2.micro --key-name ec2_keypair --security-group-ids sg-xxxxxxxx --subnet-id subnet-xxxxxxxx
 
       - name: Setup Python 3.11
         uses: actions/setup-python@v5
