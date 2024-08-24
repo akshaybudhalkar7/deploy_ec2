@@ -1,0 +1,957 @@
+{
+ "Resources": {
+  "MyVpcF9F0CA6F": {
+   "Type": "AWS::EC2::VPC",
+   "Properties": {
+    "CidrBlock": "10.0.0.0/16",
+    "EnableDnsHostnames": true,
+    "EnableDnsSupport": true,
+    "InstanceTenancy": "default",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/Resource"
+   }
+  },
+  "MyVpcPublicSubnetSubnet1Subnet60D1320D": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "dummy1a",
+    "CidrBlock": "10.0.0.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "PublicSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PublicSubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet1/Subnet"
+   }
+  },
+  "MyVpcPublicSubnetSubnet1RouteTable00654ADB": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PublicSubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet1/RouteTable"
+   }
+  },
+  "MyVpcPublicSubnetSubnet1RouteTableAssociation2CCE9CDC": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "MyVpcPublicSubnetSubnet1RouteTable00654ADB"
+    },
+    "SubnetId": {
+     "Ref": "MyVpcPublicSubnetSubnet1Subnet60D1320D"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet1/RouteTableAssociation"
+   }
+  },
+  "MyVpcPublicSubnetSubnet1DefaultRoute2D379878": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "MyVpcIGW5C4A4F63"
+    },
+    "RouteTableId": {
+     "Ref": "MyVpcPublicSubnetSubnet1RouteTable00654ADB"
+    }
+   },
+   "DependsOn": [
+    "MyVpcVPCGW488ACE0D"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet1/DefaultRoute"
+   }
+  },
+  "MyVpcPublicSubnetSubnet1EIP5C2C4ED5": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PublicSubnetSubnet1"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet1/EIP"
+   }
+  },
+  "MyVpcPublicSubnetSubnet1NATGateway9744F529": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "MyVpcPublicSubnetSubnet1EIP5C2C4ED5",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "MyVpcPublicSubnetSubnet1Subnet60D1320D"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PublicSubnetSubnet1"
+     }
+    ]
+   },
+   "DependsOn": [
+    "MyVpcPublicSubnetSubnet1DefaultRoute2D379878",
+    "MyVpcPublicSubnetSubnet1RouteTableAssociation2CCE9CDC"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet1/NATGateway"
+   }
+  },
+  "MyVpcPublicSubnetSubnet2Subnet122ADB1B": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "dummy1b",
+    "CidrBlock": "10.0.1.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "PublicSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PublicSubnetSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet2/Subnet"
+   }
+  },
+  "MyVpcPublicSubnetSubnet2RouteTableC647F413": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PublicSubnetSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet2/RouteTable"
+   }
+  },
+  "MyVpcPublicSubnetSubnet2RouteTableAssociation7AF8666E": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "MyVpcPublicSubnetSubnet2RouteTableC647F413"
+    },
+    "SubnetId": {
+     "Ref": "MyVpcPublicSubnetSubnet2Subnet122ADB1B"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet2/RouteTableAssociation"
+   }
+  },
+  "MyVpcPublicSubnetSubnet2DefaultRouteAFC76296": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "MyVpcIGW5C4A4F63"
+    },
+    "RouteTableId": {
+     "Ref": "MyVpcPublicSubnetSubnet2RouteTableC647F413"
+    }
+   },
+   "DependsOn": [
+    "MyVpcVPCGW488ACE0D"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet2/DefaultRoute"
+   }
+  },
+  "MyVpcPublicSubnetSubnet2EIPF93892AD": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PublicSubnetSubnet2"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet2/EIP"
+   }
+  },
+  "MyVpcPublicSubnetSubnet2NATGateway883B336D": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "MyVpcPublicSubnetSubnet2EIPF93892AD",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "MyVpcPublicSubnetSubnet2Subnet122ADB1B"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PublicSubnetSubnet2"
+     }
+    ]
+   },
+   "DependsOn": [
+    "MyVpcPublicSubnetSubnet2DefaultRouteAFC76296",
+    "MyVpcPublicSubnetSubnet2RouteTableAssociation7AF8666E"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet2/NATGateway"
+   }
+  },
+  "MyVpcPublicSubnetSubnet3SubnetA86B98CE": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "dummy1c",
+    "CidrBlock": "10.0.2.0/24",
+    "MapPublicIpOnLaunch": true,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "PublicSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Public"
+     },
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PublicSubnetSubnet3"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet3/Subnet"
+   }
+  },
+  "MyVpcPublicSubnetSubnet3RouteTableA66F75CE": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PublicSubnetSubnet3"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet3/RouteTable"
+   }
+  },
+  "MyVpcPublicSubnetSubnet3RouteTableAssociation311097D4": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "MyVpcPublicSubnetSubnet3RouteTableA66F75CE"
+    },
+    "SubnetId": {
+     "Ref": "MyVpcPublicSubnetSubnet3SubnetA86B98CE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet3/RouteTableAssociation"
+   }
+  },
+  "MyVpcPublicSubnetSubnet3DefaultRoute5DBA15FE": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "GatewayId": {
+     "Ref": "MyVpcIGW5C4A4F63"
+    },
+    "RouteTableId": {
+     "Ref": "MyVpcPublicSubnetSubnet3RouteTableA66F75CE"
+    }
+   },
+   "DependsOn": [
+    "MyVpcVPCGW488ACE0D"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet3/DefaultRoute"
+   }
+  },
+  "MyVpcPublicSubnetSubnet3EIP5A87D06F": {
+   "Type": "AWS::EC2::EIP",
+   "Properties": {
+    "Domain": "vpc",
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PublicSubnetSubnet3"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet3/EIP"
+   }
+  },
+  "MyVpcPublicSubnetSubnet3NATGateway020197EE": {
+   "Type": "AWS::EC2::NatGateway",
+   "Properties": {
+    "AllocationId": {
+     "Fn::GetAtt": [
+      "MyVpcPublicSubnetSubnet3EIP5A87D06F",
+      "AllocationId"
+     ]
+    },
+    "SubnetId": {
+     "Ref": "MyVpcPublicSubnetSubnet3SubnetA86B98CE"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PublicSubnetSubnet3"
+     }
+    ]
+   },
+   "DependsOn": [
+    "MyVpcPublicSubnetSubnet3DefaultRoute5DBA15FE",
+    "MyVpcPublicSubnetSubnet3RouteTableAssociation311097D4"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PublicSubnetSubnet3/NATGateway"
+   }
+  },
+  "MyVpcPrivateSubnetSubnet1SubnetE8BD536C": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "dummy1a",
+    "CidrBlock": "10.0.3.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "PrivateSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PrivateSubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PrivateSubnetSubnet1/Subnet"
+   }
+  },
+  "MyVpcPrivateSubnetSubnet1RouteTableD918A34F": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PrivateSubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PrivateSubnetSubnet1/RouteTable"
+   }
+  },
+  "MyVpcPrivateSubnetSubnet1RouteTableAssociation2811D7AF": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "MyVpcPrivateSubnetSubnet1RouteTableD918A34F"
+    },
+    "SubnetId": {
+     "Ref": "MyVpcPrivateSubnetSubnet1SubnetE8BD536C"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PrivateSubnetSubnet1/RouteTableAssociation"
+   }
+  },
+  "MyVpcPrivateSubnetSubnet1DefaultRoute58825934": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "MyVpcPublicSubnetSubnet1NATGateway9744F529"
+    },
+    "RouteTableId": {
+     "Ref": "MyVpcPrivateSubnetSubnet1RouteTableD918A34F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PrivateSubnetSubnet1/DefaultRoute"
+   }
+  },
+  "MyVpcPrivateSubnetSubnet2SubnetE3BFCF91": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "dummy1b",
+    "CidrBlock": "10.0.4.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "PrivateSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PrivateSubnetSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PrivateSubnetSubnet2/Subnet"
+   }
+  },
+  "MyVpcPrivateSubnetSubnet2RouteTable83C86AF7": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PrivateSubnetSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PrivateSubnetSubnet2/RouteTable"
+   }
+  },
+  "MyVpcPrivateSubnetSubnet2RouteTableAssociationE7A10A88": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "MyVpcPrivateSubnetSubnet2RouteTable83C86AF7"
+    },
+    "SubnetId": {
+     "Ref": "MyVpcPrivateSubnetSubnet2SubnetE3BFCF91"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PrivateSubnetSubnet2/RouteTableAssociation"
+   }
+  },
+  "MyVpcPrivateSubnetSubnet2DefaultRoute0FED656C": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "MyVpcPublicSubnetSubnet2NATGateway883B336D"
+    },
+    "RouteTableId": {
+     "Ref": "MyVpcPrivateSubnetSubnet2RouteTable83C86AF7"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PrivateSubnetSubnet2/DefaultRoute"
+   }
+  },
+  "MyVpcPrivateSubnetSubnet3SubnetC67F8C17": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "dummy1c",
+    "CidrBlock": "10.0.5.0/24",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "PrivateSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Private"
+     },
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PrivateSubnetSubnet3"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PrivateSubnetSubnet3/Subnet"
+   }
+  },
+  "MyVpcPrivateSubnetSubnet3RouteTableC3918735": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/PrivateSubnetSubnet3"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PrivateSubnetSubnet3/RouteTable"
+   }
+  },
+  "MyVpcPrivateSubnetSubnet3RouteTableAssociation2DDA8CC4": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "MyVpcPrivateSubnetSubnet3RouteTableC3918735"
+    },
+    "SubnetId": {
+     "Ref": "MyVpcPrivateSubnetSubnet3SubnetC67F8C17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PrivateSubnetSubnet3/RouteTableAssociation"
+   }
+  },
+  "MyVpcPrivateSubnetSubnet3DefaultRoute9D116386": {
+   "Type": "AWS::EC2::Route",
+   "Properties": {
+    "DestinationCidrBlock": "0.0.0.0/0",
+    "NatGatewayId": {
+     "Ref": "MyVpcPublicSubnetSubnet3NATGateway020197EE"
+    },
+    "RouteTableId": {
+     "Ref": "MyVpcPrivateSubnetSubnet3RouteTableC3918735"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/PrivateSubnetSubnet3/DefaultRoute"
+   }
+  },
+  "MyVpcIsolatedSubnetSubnet1SubnetBEB69234": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "dummy1a",
+    "CidrBlock": "10.0.6.0/28",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "IsolatedSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/IsolatedSubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/IsolatedSubnetSubnet1/Subnet"
+   }
+  },
+  "MyVpcIsolatedSubnetSubnet1RouteTableDE4E2393": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/IsolatedSubnetSubnet1"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/IsolatedSubnetSubnet1/RouteTable"
+   }
+  },
+  "MyVpcIsolatedSubnetSubnet1RouteTableAssociation4F6F5B7B": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "MyVpcIsolatedSubnetSubnet1RouteTableDE4E2393"
+    },
+    "SubnetId": {
+     "Ref": "MyVpcIsolatedSubnetSubnet1SubnetBEB69234"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/IsolatedSubnetSubnet1/RouteTableAssociation"
+   }
+  },
+  "MyVpcIsolatedSubnetSubnet2Subnet4DC0B981": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "dummy1b",
+    "CidrBlock": "10.0.6.16/28",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "IsolatedSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/IsolatedSubnetSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/IsolatedSubnetSubnet2/Subnet"
+   }
+  },
+  "MyVpcIsolatedSubnetSubnet2RouteTable9E8E775E": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/IsolatedSubnetSubnet2"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/IsolatedSubnetSubnet2/RouteTable"
+   }
+  },
+  "MyVpcIsolatedSubnetSubnet2RouteTableAssociation0542B7DC": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "MyVpcIsolatedSubnetSubnet2RouteTable9E8E775E"
+    },
+    "SubnetId": {
+     "Ref": "MyVpcIsolatedSubnetSubnet2Subnet4DC0B981"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/IsolatedSubnetSubnet2/RouteTableAssociation"
+   }
+  },
+  "MyVpcIsolatedSubnetSubnet3Subnet80CA2F5A": {
+   "Type": "AWS::EC2::Subnet",
+   "Properties": {
+    "AvailabilityZone": "dummy1c",
+    "CidrBlock": "10.0.6.32/28",
+    "MapPublicIpOnLaunch": false,
+    "Tags": [
+     {
+      "Key": "aws-cdk:subnet-name",
+      "Value": "IsolatedSubnet"
+     },
+     {
+      "Key": "aws-cdk:subnet-type",
+      "Value": "Isolated"
+     },
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/IsolatedSubnetSubnet3"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/IsolatedSubnetSubnet3/Subnet"
+   }
+  },
+  "MyVpcIsolatedSubnetSubnet3RouteTable805729B7": {
+   "Type": "AWS::EC2::RouteTable",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc/IsolatedSubnetSubnet3"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/IsolatedSubnetSubnet3/RouteTable"
+   }
+  },
+  "MyVpcIsolatedSubnetSubnet3RouteTableAssociationB7E1C1E9": {
+   "Type": "AWS::EC2::SubnetRouteTableAssociation",
+   "Properties": {
+    "RouteTableId": {
+     "Ref": "MyVpcIsolatedSubnetSubnet3RouteTable805729B7"
+    },
+    "SubnetId": {
+     "Ref": "MyVpcIsolatedSubnetSubnet3Subnet80CA2F5A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/IsolatedSubnetSubnet3/RouteTableAssociation"
+   }
+  },
+  "MyVpcIGW5C4A4F63": {
+   "Type": "AWS::EC2::InternetGateway",
+   "Properties": {
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyVpc"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/IGW"
+   }
+  },
+  "MyVpcVPCGW488ACE0D": {
+   "Type": "AWS::EC2::VPCGatewayAttachment",
+   "Properties": {
+    "InternetGatewayId": {
+     "Ref": "MyVpcIGW5C4A4F63"
+    },
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyVpc/VPCGW"
+   }
+  },
+  "MyInstanceInstanceSecurityGroup3E7A7DD1": {
+   "Type": "AWS::EC2::SecurityGroup",
+   "Properties": {
+    "GroupDescription": "snowman/MyInstance/InstanceSecurityGroup",
+    "SecurityGroupEgress": [
+     {
+      "CidrIp": "0.0.0.0/0",
+      "Description": "Allow all outbound traffic by default",
+      "IpProtocol": "-1"
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyInstance"
+     }
+    ],
+    "VpcId": {
+     "Ref": "MyVpcF9F0CA6F"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyInstance/InstanceSecurityGroup/Resource"
+   }
+  },
+  "MyInstanceInstanceRole1C4D4747": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "ec2.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyInstance"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyInstance/InstanceRole/Resource"
+   }
+  },
+  "MyInstanceInstanceProfile2784C631": {
+   "Type": "AWS::IAM::InstanceProfile",
+   "Properties": {
+    "Roles": [
+     {
+      "Ref": "MyInstanceInstanceRole1C4D4747"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyInstance/InstanceProfile"
+   }
+  },
+  "MyInstanceA12EC128": {
+   "Type": "AWS::EC2::Instance",
+   "Properties": {
+    "AvailabilityZone": "dummy1a",
+    "IamInstanceProfile": {
+     "Ref": "MyInstanceInstanceProfile2784C631"
+    },
+    "ImageId": {
+     "Ref": "SsmParameterValueawsserviceamiamazonlinuxlatestamznamihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+    },
+    "InstanceType": "t2.micro",
+    "KeyName": "ec2_keypair",
+    "SecurityGroupIds": [
+     {
+      "Fn::GetAtt": [
+       "MyInstanceInstanceSecurityGroup3E7A7DD1",
+       "GroupId"
+      ]
+     }
+    ],
+    "SubnetId": {
+     "Ref": "MyVpcPrivateSubnetSubnet1SubnetE8BD536C"
+    },
+    "Tags": [
+     {
+      "Key": "Name",
+      "Value": "snowman/MyInstance"
+     }
+    ],
+    "UserData": {
+     "Fn::Base64": "#!/bin/bash"
+    }
+   },
+   "DependsOn": [
+    "MyInstanceInstanceRole1C4D4747"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "snowman/MyInstance/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/12O0YqDQAxFv6Xv46x26QeUshRflkGXvpaYpjRbnSkzmRUR/31Ra4U+3eTcm3C3OttlOt1AGxK83JOaK92XAnhX0IZzT7jV/emB6nC1J3NQJlY1YxkrSzKydSpcFPqBqqaVr2wfgkMGYWdf4XH4ys0o3yBHEGqhU8bzHwitj3Mr5C29AnOT57YXAbw1ZEXlNghYJFUSRs/SHb2Lj6nMO1iig2JodF+4ufSii228u3JNw6AKCi56nFwDHhoS8tPJ0xiU6eTm7MenzlKdbn4Dc+KjFW5IF7P+A5+tG91sAQAA"
+   },
+   "Metadata": {
+    "aws:cdk:path": "snowman/CDKMetadata/Default"
+   }
+  }
+ },
+ "Parameters": {
+  "SsmParameterValueawsserviceamiamazonlinuxlatestamznamihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter": {
+   "Type": "AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>",
+   "Default": "/aws/service/ami-amazon-linux-latest/amzn-ami-hvm-x86_64-gp2"
+  },
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

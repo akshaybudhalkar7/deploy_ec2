@@ -1,5 +1,5 @@
 {
-  "app": "python  ./Infrastucture/app.py",
+  "app": "python  ./Infrastructure/app.py",
   "context": {
     "aws-cdk:enableDiffNoFail": "true",
     "@aws-cdk/core:stackRelativeExports":"true"

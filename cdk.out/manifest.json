@@ -1,0 +1,377 @@
+{
+  "version": "36.0.0",
+  "artifacts": {
+    "snowman.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "snowman.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "snowman": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://441058194263/us-east-1",
+      "properties": {
+        "templateFile": "snowman.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::441058194263:role/cdk-hnb659fds-deploy-role-441058194263-us-east-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::441058194263:role/cdk-hnb659fds-cfn-exec-role-441058194263-us-east-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-441058194263-us-east-1/b94971689815ca53ccd22c752bd672d3317cea9fda776f73bf451618e160eb72.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "snowman.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::441058194263:role/cdk-hnb659fds-lookup-role-441058194263-us-east-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "snowman.assets"
+      ],
+      "metadata": {
+        "/snowman": [
+          {
+            "type": "aws:cdk:error",
+            "data": "Need to perform AWS calls for account 441058194263, but no credentials have been configured",
+            "trace": [
+              "Annotations.addMessage (C:\\Users\\Trupti\\AppData\\Local\\Temp\\jsii-kernel-VsjNto\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1608)",
+              "Annotations.addError (C:\\Users\\Trupti\\AppData\\Local\\Temp\\jsii-kernel-VsjNto\\node_modules\\aws-cdk-lib\\core\\lib\\annotations.js:1:1100)",
+              "ContextProvider.getValue (C:\\Users\\Trupti\\AppData\\Local\\Temp\\jsii-kernel-VsjNto\\node_modules\\aws-cdk-lib\\core\\lib\\context-provider.js:2:1172)",
+              "get availabilityZones [as availabilityZones] (C:\\Users\\Trupti\\AppData\\Local\\Temp\\jsii-kernel-VsjNto\\node_modules\\aws-cdk-lib\\core\\lib\\stack.js:1:10375)",
+              "new Vpc (C:\\Users\\Trupti\\AppData\\Local\\Temp\\jsii-kernel-VsjNto\\node_modules\\aws-cdk-lib\\aws-ec2\\lib\\vpc.js:1:12717)",
+              "Kernel._Kernel_create (C:\\Users\\Trupti\\AppData\\Local\\Temp\\tmpn5qrt3h0\\lib\\program.js:9127:25)",
+              "Kernel.create (C:\\Users\\Trupti\\AppData\\Local\\Temp\\tmpn5qrt3h0\\lib\\program.js:8798:93)",
+              "KernelHost.processRequest (C:\\Users\\Trupti\\AppData\\Local\\Temp\\tmpn5qrt3h0\\lib\\program.js:10715:36)",
+              "KernelHost.run (C:\\Users\\Trupti\\AppData\\Local\\Temp\\tmpn5qrt3h0\\lib\\program.js:10675:22)",
+              "Immediate._onImmediate (C:\\Users\\Trupti\\AppData\\Local\\Temp\\tmpn5qrt3h0\\lib\\program.js:10676:46)",
+              "process.processImmediate (node:internal/timers:478:21)"
+            ]
+          }
+        ],
+        "/snowman/MyVpc/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcF9F0CA6F"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet1Subnet60D1320D"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet1RouteTable00654ADB"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet1RouteTableAssociation2CCE9CDC"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet1DefaultRoute2D379878"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet1/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet1EIP5C2C4ED5"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet1/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet1NATGateway9744F529"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet2Subnet122ADB1B"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet2RouteTableC647F413"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet2RouteTableAssociation7AF8666E"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet2DefaultRouteAFC76296"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet2/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet2EIPF93892AD"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet2/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet2NATGateway883B336D"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet3/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet3SubnetA86B98CE"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet3/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet3RouteTableA66F75CE"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet3/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet3RouteTableAssociation311097D4"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet3/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet3DefaultRoute5DBA15FE"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet3/EIP": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet3EIP5A87D06F"
+          }
+        ],
+        "/snowman/MyVpc/PublicSubnetSubnet3/NATGateway": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPublicSubnetSubnet3NATGateway020197EE"
+          }
+        ],
+        "/snowman/MyVpc/PrivateSubnetSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPrivateSubnetSubnet1SubnetE8BD536C"
+          }
+        ],
+        "/snowman/MyVpc/PrivateSubnetSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPrivateSubnetSubnet1RouteTableD918A34F"
+          }
+        ],
+        "/snowman/MyVpc/PrivateSubnetSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPrivateSubnetSubnet1RouteTableAssociation2811D7AF"
+          }
+        ],
+        "/snowman/MyVpc/PrivateSubnetSubnet1/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPrivateSubnetSubnet1DefaultRoute58825934"
+          }
+        ],
+        "/snowman/MyVpc/PrivateSubnetSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPrivateSubnetSubnet2SubnetE3BFCF91"
+          }
+        ],
+        "/snowman/MyVpc/PrivateSubnetSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPrivateSubnetSubnet2RouteTable83C86AF7"
+          }
+        ],
+        "/snowman/MyVpc/PrivateSubnetSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPrivateSubnetSubnet2RouteTableAssociationE7A10A88"
+          }
+        ],
+        "/snowman/MyVpc/PrivateSubnetSubnet2/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPrivateSubnetSubnet2DefaultRoute0FED656C"
+          }
+        ],
+        "/snowman/MyVpc/PrivateSubnetSubnet3/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPrivateSubnetSubnet3SubnetC67F8C17"
+          }
+        ],
+        "/snowman/MyVpc/PrivateSubnetSubnet3/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPrivateSubnetSubnet3RouteTableC3918735"
+          }
+        ],
+        "/snowman/MyVpc/PrivateSubnetSubnet3/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPrivateSubnetSubnet3RouteTableAssociation2DDA8CC4"
+          }
+        ],
+        "/snowman/MyVpc/PrivateSubnetSubnet3/DefaultRoute": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcPrivateSubnetSubnet3DefaultRoute9D116386"
+          }
+        ],
+        "/snowman/MyVpc/IsolatedSubnetSubnet1/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcIsolatedSubnetSubnet1SubnetBEB69234"
+          }
+        ],
+        "/snowman/MyVpc/IsolatedSubnetSubnet1/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcIsolatedSubnetSubnet1RouteTableDE4E2393"
+          }
+        ],
+        "/snowman/MyVpc/IsolatedSubnetSubnet1/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcIsolatedSubnetSubnet1RouteTableAssociation4F6F5B7B"
+          }
+        ],
+        "/snowman/MyVpc/IsolatedSubnetSubnet2/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcIsolatedSubnetSubnet2Subnet4DC0B981"
+          }
+        ],
+        "/snowman/MyVpc/IsolatedSubnetSubnet2/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcIsolatedSubnetSubnet2RouteTable9E8E775E"
+          }
+        ],
+        "/snowman/MyVpc/IsolatedSubnetSubnet2/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcIsolatedSubnetSubnet2RouteTableAssociation0542B7DC"
+          }
+        ],
+        "/snowman/MyVpc/IsolatedSubnetSubnet3/Subnet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcIsolatedSubnetSubnet3Subnet80CA2F5A"
+          }
+        ],
+        "/snowman/MyVpc/IsolatedSubnetSubnet3/RouteTable": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcIsolatedSubnetSubnet3RouteTable805729B7"
+          }
+        ],
+        "/snowman/MyVpc/IsolatedSubnetSubnet3/RouteTableAssociation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcIsolatedSubnetSubnet3RouteTableAssociationB7E1C1E9"
+          }
+        ],
+        "/snowman/MyVpc/IGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcIGW5C4A4F63"
+          }
+        ],
+        "/snowman/MyVpc/VPCGW": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyVpcVPCGW488ACE0D"
+          }
+        ],
+        "/snowman/MyInstance/InstanceSecurityGroup/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyInstanceInstanceSecurityGroup3E7A7DD1"
+          }
+        ],
+        "/snowman/MyInstance/InstanceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyInstanceInstanceRole1C4D4747"
+          }
+        ],
+        "/snowman/MyInstance/InstanceProfile": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyInstanceInstanceProfile2784C631"
+          }
+        ],
+        "/snowman/MyInstance/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "MyInstanceA12EC128"
+          }
+        ],
+        "/snowman/SsmParameterValue:--aws--service--ami-amazon-linux-latest--amzn-ami-hvm-x86_64-gp2:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SsmParameterValueawsserviceamiamazonlinuxlatestamznamihvmx8664gp2C96584B6F00A464EAD1953AFF4B05118Parameter"
+          }
+        ],
+        "/snowman/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/snowman/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/snowman/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "snowman"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  },
+  "missing": [
+    {
+      "key": "availability-zones:account=441058194263:region=us-east-1",
+      "provider": "availability-zones",
+      "props": {
+        "account": "441058194263",
+        "region": "us-east-1",
+        "lookupRoleArn": "arn:${AWS::Partition}:iam::441058194263:role/cdk-hnb659fds-lookup-role-441058194263-us-east-1"
+      }
+    }
+  ]
+}
